@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# (0) Habilitamos forward de paquetes, de esta forma habilitamos la capacidad de
+# enrutamiento del sistema operativo
+sysctl -w net.ipv4.ip_forward=1
+
 # (1) Se eliminan reglas de iptables previas que hubiera y cadenas definidas por el usuario
 iptables -F
 iptables -X
@@ -13,8 +17,8 @@ iptables -t mangle -X
 iptables -P INPUT DROP
 iptables -P OUTPUT DROP
 iptables -P FORWARD DROP
-iptables -I INPUT -j LOG --log-prefix "INPUT DROP: " --log-level 6
-iptables -I FORWARD -j LOG --log-prefix "FORWARD DROP: " --log-level 6
+#iptables -I INPUT -j LOG --log-prefix "INPUT DROP: " --log-level 6
+#iptables -I FORWARD -j LOG --log-prefix "FORWARD DROP: " --log-level 6
 
 # (3) a la interface lo (localhost) se le permite todo
 iptables -I INPUT -i lo -j ACCEPT

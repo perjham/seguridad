@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# (0) Habilitamos forward de paquetes, de esta forma habilitamos la capacidad de
-# enrutamiento del sistema operativo
+# (0) Activamos reenvio de paquetes, de esta forma habilitamos la capacidad de
+# enrutamiento del sistema operativoi (por defecto es 0, deshabilitado)
 sysctl -w net.ipv4.ip_forward=1
 
 # (1) Se eliminan reglas de iptables previas que hubiera y cadenas definidas por el usuario
